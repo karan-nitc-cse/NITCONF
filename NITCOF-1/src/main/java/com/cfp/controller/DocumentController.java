@@ -1,7 +1,9 @@
 package com.cfp.controller;
 
 import com.cfp.entity.FileEntity;
+import com.cfp.entity.User;
 import com.cfp.repository.FileRepository;
+import com.cfp.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -10,10 +12,7 @@ import jakarta.servlet.http.HttpSession;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @RestController
@@ -23,12 +22,17 @@ public class DocumentController {
     @Autowired
     FileRepository fileRepository;
 
+    @Autowired
+    UserService service;
+
     // Mapping for uploading document
-    @GetMapping("/uploadhere")
+    @GetMapping("/uploadhere/{username}")
     @Operation(summary = "Upload Document Page", description = "Displays the page for uploading documents")
-    public Object UploadPage(@NotNull Model model) {
+    public Object UploadPage(@PathVariable String username,@NotNull Model model) {
         // Prepare a new FileEntity object and add it to the model for upload form
         FileEntity file = new FileEntity();
+        User user = service.getUserByUsername(username);
+        model.addAttribute("user", user);
         model.addAttribute("file", file);
         return new ModelAndView("uploadedDoc"); // Return the view for document upload
     }
@@ -43,7 +47,7 @@ public class DocumentController {
     public ModelAndView UploadedPaper(@ModelAttribute("file") FileEntity file, HttpSession session) {
         // Save the uploaded document
         fileRepository.save(file);
-        return new ModelAndView("redirect:/dashboard"); // Redirect to the dashboard page after upload
+        return new ModelAndView("redirect:/paper"); // Redirect to the dashboard page after upload
     }
 
 }

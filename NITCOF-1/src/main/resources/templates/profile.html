@@ -104,7 +104,7 @@
                 <nav>
                     <a href="/" th:href="@{/dashboard}" class="feature-link"><i class="fas fa-home profile-icon"></i> Home</a>
                     <a href="/" th:href="@{/profile}" class="feature-link"><i class="fas fa-user profile-icon"></i> Profile</a>
-                    <a href="/" th:href="@{/uploadhere}" class="feature-link"><i class="fas fa-file profile-icon"></i> Upload</a>
+                    <a href="/" th:href="@{/uploadhere/{username}(username=${user.username})}" class="feature-link"><i class="fas fa-file profile-icon"></i> Upload</a>
                     <a href="/" th:href="@{/paper}" class="feature-link"><i class="fas fa-star profile-icon"></i> Reviews</a>
                     <a href="/" th:href="@{/logout}" class="feature-link"><i class="fas fa-sign-out-alt profile-icon"></i> Logout</a>
                 </nav>

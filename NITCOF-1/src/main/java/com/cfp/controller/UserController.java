@@ -100,6 +100,7 @@ public class UserController {
         List<FileEntity> uploadedFiles = fileRepository.findByuserid(currentUserName);
         ModelAndView modelAndView = new ModelAndView("speaker_Dashboard");
         modelAndView.addObject("uploadedFiles", uploadedFiles);
+        modelAndView.addObject("user", currentuser);
         return modelAndView;
     }
     //mapping for uploaded_paper
@@ -109,6 +110,7 @@ public class UserController {
         List<FileEntity> uploadedFiles = fileRepository.findByuserid(currentUserName);
         ModelAndView modelAndView = new ModelAndView("uploaded_paper");
         modelAndView.addObject("uploadedFiles", uploadedFiles);
+        modelAndView.addObject("user", currentuser);
         return modelAndView;
     }
 

@@ -86,7 +86,7 @@
                 <nav>
                     <a href="/" th:href="@{/dashboard}" class="feature-link"><i class="fas fa-home profile-icon"></i> Home</a>
                     <a href="/" th:href="@{/profile}" class="feature-link"><i class="fas fa-user profile-icon"></i> Profile</a>
-                    <a href="/" th:href="@{/uploadhere}" class="feature-link"><i class="fas fa-file profile-icon"></i> Upload</a>
+                    <a href="/" th:href="@{/uploadhere/{username}(username=${user.username})}" class="feature-link"><i class="fas fa-file profile-icon"></i> Upload</a>
                     <a href="/" th:href="@{/paper}" class="feature-link"><i class="fas fa-star profile-icon"></i> Reviews</a>
                     <a href="/" th:href="@{/logout}" class="feature-link"><i class="fas fa-sign-out-alt profile-icon"></i> Logout</a>
                 </nav>
@@ -104,11 +104,11 @@
     <p><strong>Paper: <span th:text="${iterStat.count}"></span></strong></p>
     <p>Title: <span th:text="${file.title}"></span></p>
     <p><a th:href="@{${file.link}}" target="_blank">Click here to see the paper</a></p>
-    <p>Description: <span th:text="${file.tags}"></span></p>
-    <p>Status:
+    <p><strong>Description:</strong> <span th:text="${file.tags}"></span></p>
+    <p><strong>Status:</strong>
         <span th:text="${file.status == 'accepted'} ? 'Accepted' : (${file.status == 'rejected'} ? 'Resubmit' : 'Pending')"></span>
     </p>
-    <p>Comment: <span th:text="${file.comment}"></span></p>
+    <p><strong>Comment:</strong> <span th:text="${file.comment}"></span></p>
     <hr/>
 </div>
 

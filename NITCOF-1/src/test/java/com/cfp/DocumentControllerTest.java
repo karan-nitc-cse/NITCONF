@@ -1,62 +1,50 @@
-//package com.cfp.testcase;
-//
-//import com.cfp.controller.DocumentController;
-//import com.cfp.entity.FileEntity;
-//import com.cfp.repository.FileRepository;
-//import jakarta.servlet.http.HttpSession;
-//import org.junit.jupiter.api.Test;
-//import org.junit.jupiter.api.extension.ExtendWith;
-//import org.mockito.InjectMocks;
-//import org.mockito.Mock;
-//import org.mockito.junit.jupiter.MockitoExtension;
-//import org.springframework.boot.test.context.SpringBootTest;
-//import org.springframework.ui.Model;
-//import org.springframework.web.servlet.ModelAndView;
-//import static org.junit.jupiter.api.Assertions.assertEquals;
-//import static org.mockito.ArgumentMatchers.any;
-//import static org.mockito.Mockito.when;
-//
-//@SpringBootTest
-//@ExtendWith(MockitoExtension.class)
-//public class DocumentControllerTest {
-//
-//    @Mock
-//    private FileRepository fileRepository;
-//
-//    @Mock
-//    private Model model;
-//
-//    @Mock
-//    private HttpSession session;
-//
-//    @InjectMocks
-//    private DocumentController documentController;
-//
+package com.cfp;
+
+import com.cfp.controller.DocumentController;
+import com.cfp.entity.FileEntity;
+import com.cfp.repository.FileRepository;
+import jakarta.servlet.http.HttpSession;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.springframework.ui.Model;
+import org.springframework.web.servlet.ModelAndView;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+class DocumentControllerTest {
+
+    @Mock
+    private FileRepository fileRepository;
+
+    @InjectMocks
+    private DocumentController documentController;
+
+    @BeforeEach
+    void setUp() {
+        MockitoAnnotations.openMocks(this);
+    }
+
 //    @Test
-//    public void testUploadPage() {
-//        // Setup
-//        FileEntity file = new FileEntity();
-//        when(model.addAttribute(any(String.class), any())).thenReturn(model);
-//
-//        // Execute
+//    void testUploadPage() {
+//        Model model = mock(Model.class);
 //        Object result = documentController.UploadPage(model);
-//
-//        // Verify
+//        assertEquals(ModelAndView.class, result.getClass());
 //        assertEquals("uploadedDoc", ((ModelAndView) result).getViewName());
+//        verify(model).addAttribute("file", new FileEntity());
 //    }
-//
-//    @Test
-//    public void testUploadedPaper() {
-//        // Setup
-//        FileEntity file = new FileEntity();
-//        when(fileRepository.save(file)).thenReturn(file);
-//        ModelAndView expectedModelAndView = new ModelAndView("redirect:/dashboard");
-//
-//        // Execute
-//        ModelAndView result = documentController.UploadedPaper(file, session);
-//
-//        // Verify
-//        assertEquals(expectedModelAndView.getViewName(), result.getViewName());
-//    }
-//
-//}
+
+    @Test
+    void testUploadedPaper() {
+        HttpSession session = mock(HttpSession.class);
+        FileEntity file = new FileEntity();
+        ModelAndView modelAndView = documentController.UploadedPaper(file, session);
+        assertEquals("redirect:/dashboard", modelAndView.getViewName());
+        verify(fileRepository).save(file);
+    }
+}
