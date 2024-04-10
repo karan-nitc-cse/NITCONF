@@ -104,6 +104,7 @@
     <p><strong>Paper: <span th:text="${iterStat.count}"></span></strong></p>
     <p>Title: <span th:text="${file.title}"></span></p>
     <p><a th:href="@{${file.link}}" target="_blank">Click here to see the paper</a></p>
+    <p><strong>Keywords:</strong> <span th:text="${file.keyword}"></span></p>
     <p><strong>Description:</strong> <span th:text="${file.tags}"></span></p>
     <p><strong>Status:</strong>
         <span th:text="${file.status == 'accepted'} ? 'Accepted' : (${file.status == 'rejected'} ? 'Resubmit' : 'Pending')"></span>

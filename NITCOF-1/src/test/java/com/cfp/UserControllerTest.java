@@ -79,6 +79,7 @@ class UserControllerTest {
         ModelAndView modelAndView = userController.LoginAuthor(user, model, session);
         assertEquals("redirect:/dashboard", modelAndView.getViewName());
     }
+
     @Test
     void testExistingUser() {
         String existingUsername = "existingUser";

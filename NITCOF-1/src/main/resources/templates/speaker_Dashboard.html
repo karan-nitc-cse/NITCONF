@@ -104,8 +104,10 @@
     <th:block th:if="${file.status == 'accepted'}">
         <p><strong>Paper: <span th:text="${iterStat.count}"></span></strong></p>
         <p><strong>Title:</strong> <span th:text="${file.title}"></span></p>
-        <p><a th:href="@{${file.link}}" target="_blank">Click here to see the paper</a></p>
+
+        <p><strong>Keywords:</strong> <span th:text="${file.keyword}"></span></p>
         <p><strong>Description:</strong> <span th:text="${file.tags}"></span></p>
+        <p><a th:href="@{${file.link}}" target="_blank">Click here to see the paper</a></p>
         <hr/>
     </th:block>
 </div>

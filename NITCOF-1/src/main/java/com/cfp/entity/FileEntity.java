@@ -20,6 +20,7 @@ public class FileEntity {
     private String userid;
     private String comment;
     private String status;
+    private String keyword;
 
 
 }
