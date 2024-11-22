@@ -51,19 +51,10 @@ The website focuses on handling the submission and evaluation process for papers
 #### 2.3.4 Logout
 - Users can log out by clicking the **Logout** button.
 
----
-
-## 3. Non-functional Requirements
-
-### 3.1 Security
-- Secure user authentication to protect user data.
-- Role-based access control to ensure data privacy.
-
-### 3.2 Performance
-- Efficient handling of simultaneous submissions and reviews.
-- Minimal response times for all user interactions.
-
 --- 
+
+## Flowchart
+![Flowchart](https://github.com/user-attachments/assets/70f02d85-bb84-4f2f-9aaa-a03e079578fe)
 
 
 
